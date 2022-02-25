@@ -1,0 +1,239 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url(img/background.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.body2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.img {
+  width: 500px;
+  height: 550px;
+  border: 2px solid black;
+  margin: 30px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* IMG feuillus */
+
+.feuillus-img1 {
+  background-image: url(img/feuillus/charme.jpg);
+}
+
+.feuillus-img2 {
+  background-image: url(img/feuillus/chataignier.jpg);
+}
+
+.feuillus-img3 {
+  background-image: url(img/feuillus/chene.jpg);
+}
+
+.feuillus-img4 {
+  background-image: url(img/feuillus/erable.jpg);
+}
+
+.feuillus-img5 {
+  background-image: url(img/feuillus/hetre.jpg);
+}
+
+/* FIN IMG feuillus */
+
+
+/* IMG resineux */
+
+.resineux-img1 {
+  background-image: url(img/resineux/cembro.jpg);
+}
+
+.resineux-img2 {
+  background-image: url(img/resineux/maritime.jpg);
+}
+
+.resineux-img3 {
+  background-image: url(img/resineux/meleze.jpg);
+}
+
+.resineux-img4 {
+  background-image: url(img/resineux/sapin.jpg);
+}
+
+.resineux-img5 {
+  background-image: url(img/resineux/sylvestre.jpg);
+}
+
+/* FIN IMG resineux */
+
+
+/* IMG animaux */
+
+.animaux-img1 {
+  background-image: url(img/animaux/4de1v6h6kbk51.jpg);
+}
+
+.animaux-img2 {
+  background-image: url(img/animaux/986.png);
+}
+
+.animaux-img3 {
+  background-image: url(img/animaux/eca6pdcu48451.jpg);
+}
+
+.animaux-img4 {
+  background-image: url(img/animaux/hfds654g65465d4fs.jpg);
+}
+
+.animaux-img5 {
+  background-image: url(img/animaux/unknown.png);
+}
+
+/* FIN IMG animaux */
+
+
+/* IMG champignons */
+
+.champignons-img1 {
+  background-image: url(img/champignons/cepe.jpg);
+}
+
+.champignons-img2 {
+  background-image: url(img/champignons/cesar.png);
+}
+
+.champignons-img3 {
+  background-image: url(img/champignons/girolle.png);
+}
+
+.champignons-img4 {
+  background-image: url(img/champignons/pied-bleu.jpg);
+}
+
+.champignons-img5 {
+  background-image: url(img/champignons/pied-de-mouton.jpg);
+}
+
+/* FIN IMG champignons */
+
+
+/* BUTTONS */
+
+.center {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.btn-1 {
+  border-radius: 3px;
+  width: 100px;
+  height: 50px;
+  border: none;
+  color: white;
+  background-color: green;
+  font-size: 20px;
+  transition: ease-out 0.3s;
+  outline: none;
+}
+
+.btn-1:hover {
+  box-shadow: inset 100px 0 0 0 darkGreen;
+  cursor: pointer;
+  color: yellow;
+}
+
+/* Second button */
+
+.btn-2 {
+  border-radius: 3px;
+  width: 100px;
+  height: 50px;
+  border: none;
+  color: white;
+  background-color: green;
+  font-size: 20px;
+  transition: ease-out 0.3s;
+  outline: none;
+}
+
+.btn-2:hover {
+  box-shadow: inset 100px 0 0 0 darkGreen;
+  cursor: pointer;
+  color: yellow;
+}
+
+/* Third button */
+
+.btn-3 {
+  border-radius: 3px;
+  width: 100px;
+  height: 50px;
+  border: none;
+  color: white;
+  background-color: green;
+  font-size: 20px;
+  transition: ease-out 0.3s;
+  outline: none;
+}
+
+.btn-3:hover {
+  box-shadow: inset 100px 0 0 0 darkGreen;
+  cursor: pointer;
+  color: yellow;
+}
+
+/* Fourth button */
+
+.btn-4 {
+  border-radius: 3px;
+  width: 130px;
+  height: 50px;
+  border: none;
+  color: white;
+  background-color: green;
+  font-size: 20px;
+  transition: ease-out 0.3s;
+  outline: none;
+}
+
+.btn-4:hover {
+  box-shadow: inset 130px 0 0 0 darkGreen;
+  cursor: pointer;
+  color: yellow;
+}
+/* Fifth button */
+
+.btn-page-acceuil {
+  position: absolute;
+  left: 2.5px;
+  top: 30px;
+  border-radius: 3px;
+  width: 130px;
+  height: 50px;
+  border: none;
+  color: white;
+  background-color: green;
+  font-size: 20px;
+  transition: ease-out 0.3s;
+  outline: none;
+}
+
+.btn-page-acceuil:hover {
+  box-shadow: inset 130px 0 0 0 darkGreen;
+  cursor: pointer;
+  color: yellow;
+}
