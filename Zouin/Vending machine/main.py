@@ -1,7 +1,8 @@
-items = [["eau", 0.90], ["chocolat", 1.50], ["enfant", 69], ["doritos", 2.30]]
+items = [["Sandwich au poulet", 4.90], ["Chips paprika", 2.50], ["Barre de chocolat", 2.00], ["Bonbons", 3.30], ["Ice Tea", 2.20], ["Limonade", 1.90]]
 i = 0
 
-print("Hello welcome to the vending machine, here is our menu \n") #Welcome message
+print("Bienvenue ! Voici notre sélection de produit :\n")
+print("--------------------------------------------------")
 
 print("Menu: ")
 for item in items:
@@ -13,28 +14,29 @@ def Taking_Order():
     def Order_Proccess():
         itemOrdered = items[order - 1][0]
         orderPrice = items[order - 1][1]
-        print(f"You ordered {itemOrdered}, that will be ${orderPrice}")
+        print(f"Vous avez commander {itemOrdered}, cela coûte ${orderPrice}")
 
-        money = float(input("Please insert your money: "))
-        print(f"You inserted ${money}")
+        money = float(input("Veuillez introduire votre monnaie: "))
+        print(f"Vous avez introduit ${money}")
 
         if money >= orderPrice:
-            print(f"You have received {itemOrdered} \nMoney to return ${round(money - orderPrice, 2)}")
+            if order == 5 or order == 6:
+                print(f"{itemOrdered} servie! Sante ! \nMonnaie à rendre ${round(money - orderPrice, 2)}")
+            else:
+                print(f"{itemOrdered} servie! Bonne appetite ! \nMonnaie à rendre ${round(money - orderPrice, 2)}")
         else:
-            print(f"Insufficient funds \nReturned ${money}")
-            answer = input("Would you like to try again? y/n\n")
+            print(f"Vous n'avais pas mis assez d'argent \n${money} rendu")
+            answer = input("Voulez vous réessayer? y/n\n")
             if answer == "y":
                 Taking_Order()
             else:
                 exit()
 
-    order = int(input("\nEnter the number of the item you would like to order: \n"))
-    if order in range(1, 5):
+    order = int(input("\nVeuillez sélectionner un produit: \n"))
+    if order in range(1, 7):
         Order_Proccess()
     else:
-        print("Please select a valid item")
+        print("Cet article n'est pas valable")
         Taking_Order()
 
 Taking_Order()
-
-input("\n\nPress any key to exit...")
