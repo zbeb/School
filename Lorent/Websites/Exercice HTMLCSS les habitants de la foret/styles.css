@@ -7,7 +7,11 @@ body {
   background-image: url(img/background.jpeg);
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  height: auto;
+}
+
+h1 {
+  text-align: center;
 }
 
 .body2 {
@@ -16,117 +20,51 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
-.img {
-  width: 500px;
-  height: 550px;
+.encadre {
+  width: auto;
+  height: 500px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 50px;
+  margin-top: 20px;
+}
+
+.img-left {
+  float: left;
+  width: 400px;
+  height: 500px;
   border: 2px solid black;
-  margin: 30px;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
-/* IMG feuillus */
-
-.feuillus-img1 {
-  background-image: url(img/feuillus/charme.jpg);
+.img-right {
+  float: right;
+  width: 400px;
+  height: 500px;
+  border: 2px solid black;
 }
 
-.feuillus-img2 {
-  background-image: url(img/feuillus/chataignier.jpg);
+.p-right {
+	margin-left: 450px;
+	padding: 15px;
+	font-size: 20px;
+	color: white;
+	height: 94%;
+	border: 2px solid black; 
+	background: rgba(0,0,0, 0.5)
 }
 
-.feuillus-img3 {
-  background-image: url(img/feuillus/chene.jpg);
+.p-left {
+	margin-right: 450px;
+	padding: 15px;
+	font-size: 20px;
+	color: white;
+	height: 94%;
+	border: 2px solid black; 
+	background: rgba(0,0,0, 0.5)
 }
-
-.feuillus-img4 {
-  background-image: url(img/feuillus/erable.jpg);
-}
-
-.feuillus-img5 {
-  background-image: url(img/feuillus/hetre.jpg);
-}
-
-/* FIN IMG feuillus */
-
-
-/* IMG resineux */
-
-.resineux-img1 {
-  background-image: url(img/resineux/cembro.jpg);
-}
-
-.resineux-img2 {
-  background-image: url(img/resineux/maritime.jpg);
-}
-
-.resineux-img3 {
-  background-image: url(img/resineux/meleze.jpg);
-}
-
-.resineux-img4 {
-  background-image: url(img/resineux/sapin.jpg);
-}
-
-.resineux-img5 {
-  background-image: url(img/resineux/sylvestre.jpg);
-}
-
-/* FIN IMG resineux */
-
-
-/* IMG animaux */
-
-.animaux-img1 {
-  background-image: url(img/animaux/4de1v6h6kbk51.jpg);
-}
-
-.animaux-img2 {
-  background-image: url(img/animaux/986.png);
-}
-
-.animaux-img3 {
-  background-image: url(img/animaux/eca6pdcu48451.jpg);
-}
-
-.animaux-img4 {
-  background-image: url(img/animaux/hfds654g65465d4fs.jpg);
-}
-
-.animaux-img5 {
-  background-image: url(img/animaux/unknown.png);
-}
-
-/* FIN IMG animaux */
-
-
-/* IMG champignons */
-
-.champignons-img1 {
-  background-image: url(img/champignons/cepe.jpg);
-}
-
-.champignons-img2 {
-  background-image: url(img/champignons/cesar.png);
-}
-
-.champignons-img3 {
-  background-image: url(img/champignons/girolle.png);
-}
-
-.champignons-img4 {
-  background-image: url(img/champignons/pied-bleu.jpg);
-}
-
-.champignons-img5 {
-  background-image: url(img/champignons/pied-de-mouton.jpg);
-}
-
-/* FIN IMG champignons */
-
 
 /* BUTTONS */
 
@@ -218,9 +156,9 @@ body {
 /* Fifth button */
 
 .btn-page-acceuil {
-  position: absolute;
+  position: relative;
   left: 2.5px;
-  top: 30px;
+  top: 10px;
   border-radius: 3px;
   width: 130px;
   height: 50px;
