@@ -1,0 +1,15 @@
+{
+  "name": "toutes-les-saveurs",
+  "version": "1.0.0",
+  "description": "recipe site",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "ye",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.5.0",
+    "parcel": "^2.5.0"
+  }
+}

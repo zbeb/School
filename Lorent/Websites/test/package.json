@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "requirejs": "^2.3.6",
+    "sneaks-api": "^1.2.3"
+  }
+}
