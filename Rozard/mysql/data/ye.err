@@ -1,0 +1,20 @@
+2022-05-24 19:04:12 13572 [Note] Plugin 'FEDERATED' is disabled.
+2022-05-24 19:04:12 13572 [Note] InnoDB: The InnoDB memory heap is disabled
+2022-05-24 19:04:12 13572 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2022-05-24 19:04:12 13572 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2022-05-24 19:04:12 13572 [Note] InnoDB: Not using CPU crc32 instructions
+2022-05-24 19:04:12 13572 [Note] InnoDB: Initializing buffer pool, size = 128.0M
+2022-05-24 19:04:12 13572 [Note] InnoDB: Completed initialization of buffer pool
+2022-05-24 19:04:12 13572 [Note] InnoDB: Setting log file C:\Users\zbeb\Documents\GitHub\Programming\School\Rozard\mysql\data\ib_logfile101 size to 5 MB
+2022-05-24 19:04:12 13572 [Note] InnoDB: Setting log file C:\Users\zbeb\Documents\GitHub\Programming\School\Rozard\mysql\data\ib_logfile1 size to 5 MB
+2022-05-24 19:04:12 13572 [Note] InnoDB: Renaming log file C:\Users\zbeb\Documents\GitHub\Programming\School\Rozard\mysql\data\ib_logfile101 to C:\Users\zbeb\Documents\GitHub\Programming\School\Rozard\mysql\data\ib_logfile0
+2022-05-24 19:04:12 13572 [Warning] InnoDB: New log files created, LSN=1626134
+2022-05-24 19:04:12 13572 [Note] InnoDB: Highest supported file format is Barracuda.
+2022-05-24 19:04:12 13572 [Note] InnoDB: 128 rollback segment(s) are active.
+2022-05-24 19:04:12 13572 [Note] InnoDB: Waiting for purge to start
+2022-05-24 19:04:12 13572 [Note] InnoDB: 5.6.13 started; log sequence number 1626636
+2022-05-24 19:04:13 13572 [Warning] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: 8929d6a8-db83-11ec-8a45-2cf05d5d230f.
+2022-05-24 19:04:13 13572 [Note] Server hostname (bind-address): '*'; port: 3307
+2022-05-24 19:04:13 13572 [Note] IPv6 is available.
+2022-05-24 19:04:13 13572 [Note]   - '::' resolves to '::';
+2022-05-24 19:04:13 13572 [Note] Server socket created on IP: '::'.
