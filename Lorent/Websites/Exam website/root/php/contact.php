@@ -9,6 +9,25 @@
     <title>Contact Form</title>
 </head>
 <body>
+    <nav class="navigation">
+        <a href="../index.html"><img draggable="flase" class="logo" src="../src/img/logo.png"/></a>
+
+        <!--Menu-->
+        <ul class="menu">
+            <li><a href="../index.html">Acceuil</a></li>
+            <li><a href="../index.html#categories">Catégories</a></li>
+            <li><a href="contact.php">Contact</a></li>
+        </ul>
+
+        <!--right navigation (login/register, bookmarks)-->
+        <div class="right-nav">
+            <!--Login/register-->
+            <a href="#" class="login">
+                <i class="fa-solid fa-user"></i>
+            </a>
+        </div>
+    </nav>
+
     <div class="contact-box">
         <form action="response.php" class="form-spacing" method="POST" accept-charset="utf-8">
             <div class="left">
@@ -44,18 +63,18 @@
         }
         mysql_select_db(db);
         
-        $response = mysql_query("SELECT * FROM members ORDER BY `members`.`id`");
+        $response = mysql_query("SELECT * FROM members ORDER BY `id` DESC");
         // Shows values
         while ($lign=mysql_fetch_array($response)) {
             echo "<div class='comment-box'>";
             echo nl2br("{$lign['dateTime']}\n");
             // Shows users rating in stars
-                for ($x = 0; $x <= $lign['rating']-1; $x++) {
-                    echo "★";
-                }
-                for ($x = 0; $x <= 4 - $lign['rating']; $x++) {
-                echo "☆";
-                }
+            for ($x = 0; $x <= $lign['rating']-1; $x++) {
+                echo "★";
+            }
+            for ($x = 0; $x <= 4 - $lign['rating']; $x++) {
+            echo "☆";
+            }
             // Show values in sql on website
             echo nl2br("\nPseudo: {$lign['userName']}\nEmail: {$lign['email']}\nCommentaire: {$lign['comment']}\n");
             ?>
