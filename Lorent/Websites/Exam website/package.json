@@ -2,10 +2,10 @@
   "name": "toutes-les-saveurs",
   "version": "1.0.0",
   "description": "recipe site",
-  "default": "index.js",
+  "default": "index.html",
   "scripts": {
-    "start": "parcel root/pages/recipes.html",
-    "build": "parcel build root/pages/recipes.html"
+    "start": "parcel root/index.html",
+    "build": "parcel build root/index.html --dist-dir ./dist"
   },
   "author": "ye",
   "license": "ISC",

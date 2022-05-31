@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Connexion</title>
+    <!--Website Icon-->
+    <link rel="shortcut icon" href="src/img/favicon.png" />
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="../src/css/login.css" />
+    <!--Icons In Website-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <!--Imported Font Family-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form action="../index.html" class="signin-form">
+                    <h2 class="title">Connexion</h2>
+                    <div class="input-field">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="Pseudo" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Mot de pass" />
+                    </div>
+                    <input class="btn solid" type="submit" value="Se connecter" />
+                </form>
+                <form action="../index.html" class="signup-form">
+                    <h2 class="title">Inscription</h2>
+                    <div class="input-field">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="Pseudo" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" placeholder="Email" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Mot de pass" />
+                    </div>
+                    <input type="submit" class="btn" value="S'inscrire" />
+                </form>
+            </div>
+        </div>
+
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>Nouveau parmi nous ?</h3>
+                    <p></p>
+                    <button class="btn transparent" id="sign-up-btn">S'inscrire</button>
+                </div>
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>Déjà membre ?</h3>
+                    <p></p>
+                    <button class="btn transparent" id="sign-in-btn">Se connecter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--JavaScript-->
+    <script src="../src/js/loginPage.js"></script>
+
+</body>
+
+</html>
