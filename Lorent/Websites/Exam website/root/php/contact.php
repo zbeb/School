@@ -21,18 +21,18 @@
 </head>
 <body>
     <nav class="navigation">
-        <a href="../index.html"><img draggable="flase" class="logo" src="../src/img/logo.png"/></a>
+        <a href="../pages/index.html"><img draggable="flase" class="logo" src="../src/img/logo.png"/></a>
 
         <!--Menu-->
         <ul class="menu">
-            <li><a href="../index.html">Acceuil</a></li>
-            <li><a href="../index.html#categories">Catégories</a><li>
+            <li><a href="../pages/index.html">Acceuil</a></li>
+            <li><a href="../pages/index.html#categories">Catégories</a><li>
             <li><a href="contact.php">Contact</a></li>
         </ul>
 
         <div class="right-nav">
             <!--Login/register-->
-            <a href="../pages/login.html" class="login">
+            <a href="../index.html" class="login">
                 <i class="fa-solid fa-user"></i>
             </a>
         </div>
