@@ -79,7 +79,7 @@
             echo "<div class='comment-box'>";
             echo nl2br("{$lign['dateTime']}\n");
             // Shows users rating in stars
-            for ($x = 0; $x <= $lign['rating']-1; $x++) {
+            for ($x = 0; $x <= $lign['rating'] - 1 and $x <= 4; $x++) {
                 echo "★";
             }
             for ($x = 0; $x <= 4 - $lign['rating']; $x++) {
