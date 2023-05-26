@@ -1,3 +1,4 @@
+import os
 import time
 # import colorama
 # from colorama import Fore
@@ -50,7 +51,7 @@ class GestionExamens:
                 elif userInput == "2":
                     self.checkAccount("ELEVE")
                 elif userInput == "q":
-                    print(goodbyeColor + "Au revoir!" + Style)
+                    print(goodbyeColor + "Au revoir!" + Style.YELLOW)
                     exit()
                 else:
                     print(errorColor + "\nChoix invalide\n" + backgroundColor)
@@ -69,7 +70,7 @@ class GestionExamens:
                 elif user == "ELEVE" and self.login() == "ELEVE":
                     self.studentMode()
                 else:
-                    print(Fore.MAGENTA + "You dont have permission to access this mode\n" + backgroundColor)
+                    print(Style.PURPLE + "You dont have permission to access this mode\n" + backgroundColor)
                     time.sleep(1)
                     self.mainMenu()
                 break
@@ -88,7 +89,7 @@ class GestionExamens:
             self.username = username
             self.password = password
         else:
-            print(Fore.MAGENTA + "Passwords do not match\n" + Style)
+            print(Style.PURPLE + "Passwords do not match\n" + Style)
             time.sleep(1)
             self.mainMenu()
 
@@ -193,7 +194,7 @@ class GestionExamens:
         
     
     def takeQuiz(self):
-        with open('C:\\Users\\zbeb\\Documents\\GitHub\\Programming\\School\\Zouin\\2022-2023\\OOP\\mini-projet-3\\qcm.txt', "r") as file:
+        with open('qcm.txt', "r") as file:
             lines = file.readlines()
 
         questions = []
@@ -228,6 +229,8 @@ class GestionExamens:
             else:
                 print(errorColor + "Incorrect!\n" + backgroundColor)
 
+            if not os.path.exists(f"{self.username}_results.txt"):
+                open(f"{self.username}_results.txt", "w").close()
             with open(f"{self.username}_results.txt", "a") as file:
                 file.write(f"Question: {questions[question]}\n")
                 file.write("Answers:\n")

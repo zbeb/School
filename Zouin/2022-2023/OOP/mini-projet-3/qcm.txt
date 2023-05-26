@@ -1,13 +1,13 @@
-q: Quelle est la capitale de la France ?
-1) Londres
-2) Paris
-3) Rome
-4) Berlin
+q: Quelle est l'extension d'un fichier python ?
+1) .rat
+2) .py
+3) .python
+4) .bat
 Correct: 2
 
-q: Combien de continents y a-t-il dans le monde ?
-1) 4
-2) 5
-3) 6
-4) 7
-Correct: 4
+q: Comment définit t-on une fonction ?
+1) function
+2) func
+3) def
+4) class
+Correct: 3
