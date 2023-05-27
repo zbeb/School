@@ -30,6 +30,7 @@ class GestionExamens:
     def __init__(self):
         self.username = ""
         self.password = ""
+        self.folderName = ""
     
     def ActionForm(self, actions):
         while True:
@@ -41,7 +42,7 @@ class GestionExamens:
                 actions[choice][1]()
                 return choice
             else:
-                print(Style.RED + "Invalid choice" + backgroundColor)
+                print(errorColor + "Invalid choice" + backgroundColor)
 
     def Quit(self):
         print(Style.CLEAR)
@@ -51,7 +52,7 @@ class GestionExamens:
 
     def mainMenu(self):
         print(Style.BOLD + appHeaderColor + "APPLICATION DE GESTION DE QCM" + Style.END)
-        print(Style.CYAN + "*****************************")
+        print(backgroundColor + "*****************************")
         print(Style.BOLD + headerColor + "MENU PRINCIPAL" + Style.END)
         print(backgroundColor + "*****************************")
 
@@ -97,7 +98,7 @@ class GestionExamens:
             self.mainMenu()
 
         try:
-            with open(file="accounts.txt", mode="r", encoding='utf-8') as file:
+            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
                 accounts = file.readlines()
                 for account in accounts:
                     account = account.strip().split("|")
@@ -106,7 +107,7 @@ class GestionExamens:
                         print(errorColor + "Username already exists" + backgroundColor)
                         self.mainMenu()
 
-            with open(file="accounts.txt", mode="a", encoding='utf-8') as file:
+            with open(file="Accounts\\accounts.txt", mode="a", encoding='utf-8') as file:
                 file.write(f"{whoRegister}|{username}:{password}\n")
             print(correctColor + "Register successful!" + backgroundColor)
             time.sleep(1.5)
@@ -123,7 +124,7 @@ class GestionExamens:
         self.password = password
 
         try:
-            with open(file="accounts.txt", mode="r", encoding='utf-8') as file:
+            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
                 accounts = file.readlines()
         except FileNotFoundError:
             print(backgroundColor + "No accounts file found")
@@ -140,7 +141,7 @@ class GestionExamens:
 
 
     def teacherMode(self):
-        print(Style.CYAN + "*****************************")
+        print(backgroundColor + "*****************************")
         print(Style.BOLD + headerColor + "MODE PROFESSEUR" + Style.END + backgroundColor)
         print("*****************************")
         # - - - - - ACTION FORM - - - - -
@@ -154,7 +155,7 @@ class GestionExamens:
 
     
     def studentMode(self):
-        print("*****************************")
+        print(backgroundColor + "*****************************")
         print(Style.BOLD + headerColor + "MODE ELEVE" + Style.END + backgroundColor)
         print("*****************************")
         self.ActionForm({
@@ -162,12 +163,31 @@ class GestionExamens:
             "2": ("Main Menu", lambda: (print(Style.CLEAR, end=''), self.mainMenu())),
             'q': ('Quitter', lambda: self.Quit())
             })
-    
+
     
     def takeQuiz(self):
         print(Style.CLEAR, end='') # Clear screen
+        qcmNumber = 0
 
-        with open('qcm.txt', "r", encoding='utf-8') as file:
+        while True:
+            try:
+                qcmNumber = int(input(backgroundColor + "Veuillez entrer un numéro valide (1, 2, 3, 4, 5) : " + Style.WHITE))
+                if qcmNumber in range(1, 6):
+                    break
+                else:
+                    print(errorColor + "Invalid choice" + backgroundColor)
+            except ValueError:
+                print(errorColor + "Invalid choice" + backgroundColor)
+
+        self.folderName = f"{self.username}_QCM"
+        if not os.path.exists(self.folderName):
+            os.mkdir(self.folderName)
+        else:
+            print(errorColor + "You have already taken this quiz.")
+            time.sleep(2)
+            self.studentMode()
+
+        with open(f'QCM\qcm{qcmNumber}.txt', "r", encoding='utf-8') as file:
             lines = file.readlines()
 
         questions = []
@@ -203,9 +223,9 @@ class GestionExamens:
             else:
                 print(errorColor + "Incorrect!\n" + backgroundColor)
 
-            if not os.path.exists(f"{self.username}_results.txt"):
-                open(f"{self.username}_results.txt", "w").close()
-            with open(f"{self.username}_results.txt", "a", encoding='utf-8') as file:
+            if not os.path.exists(f"{self.folderName}\\{self.username}_QCM{qcmNumber}.txt"):
+                open(f"{self.folderName}\\{self.username}_QCM{qcmNumber}.txt", "w").close()
+            with open(f"{self.folderName}\\{self.username}_QCM{qcmNumber}.txt", "a", encoding='utf-8') as file:
                 file.write(f"Question: {questions[question]}\n")
                 file.write("Answers:\n")
                 file.write("\n".join(answers[question]) + "\n")
@@ -213,17 +233,17 @@ class GestionExamens:
                 file.write(f"User Answer: {userInput}\n")
                 file.write("\n")
         # Seperate each quiz
-        with open(f"{self.username}_results.txt", "a", encoding='utf-8') as file:
+        with open(f"{self.folderName}\\{self.username}_QCM{qcmNumber}.txt", "a", encoding='utf-8') as file:
             file.write(f"Student mark: {mark}/{len(questions)}\n")
             file.write("--------------------------------------------------\n")
         
-        print(Style.GREEN + "Quiz completed!" + Style.END)
+        print(correctColor + "Quiz completed!" + Style.END)
         if mark == len(questions):
-            print(Style.GREEN + f"Congratulations! You aced the test! ({mark}/{len(questions)})")
+            print(correctColor + f"Congratulations! You aced the test! ({mark}/{len(questions)})")
         elif mark >= len(questions) / 2:
-            print(Style.GREEN + f"Good job! You got {mark}/{len(questions)}" + Style.CYAN)
+            print(correctColor + f"Good job! You got {mark}/{len(questions)}" + backgroundColor)
         else:
-            print(Style.RED + f"SOOO BAAAAAD HAHAHA. You got {mark}/{len(questions)}" + Style.END)
+            print( + f"SOOO BAAAAAD HAHAHA. You got {mark}/{len(questions)}" + Style.END)
         time.sleep(2)
         self.studentMode()
 
