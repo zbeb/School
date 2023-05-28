@@ -1,2 +1,2 @@
 PROF|prof:prof
-ELEVE|eleve:ELEVE
+ELEVE|eleve:eleve
