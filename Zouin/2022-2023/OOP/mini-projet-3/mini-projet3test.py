@@ -1,12 +1,12 @@
 import os
 import time
 import threading
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
 
-# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
-# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
-# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
-# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
-# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
 
 class Style:
     WHITE = '\033[97m'
@@ -357,6 +357,10 @@ class GestionExamens:
                 print(errorColor + "Invalid choice" + backgroundColor)
 
         # ------ SHOW STUDENT RESULTS ------
+        # Clear the screen
+        print(Style.CLEAR, end='')
+        
+        # Open the student file and print the results
         with open(f"{selectedStudentFolder}\\{selectedStudentFile}", "r", encoding='utf-8') as file:
             print(file.read())
 
@@ -537,7 +541,6 @@ class GestionExamens:
             print(errorColor + f"SOOO BAAAAAD HAHAHA. You got {grade}/{len(questions)}" + Style.END)
         time.sleep(2)
         self.studentMode()
-
 
 def main():
     print(Style.CLEAR, end='') # Clear the screen
