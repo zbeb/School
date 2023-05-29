@@ -1,5 +1,6 @@
 import os
 import time
+import threading
 
 # TODO: ----------------------------------------------------------------------------------------------------
                 # --------------------------💀 SHIT DOES NOT WORK BRUH 💀--------------------------         
@@ -40,6 +41,37 @@ class GestionExamens:
         self.password = ""
         self.folderName = ""
     
+
+    def Quit(self):
+        '''
+        Quit the application
+        '''
+        print(Style.CLEAR)
+        print(Style.CLEAR + goodbyeColor + "Au revoir!" + defaultColor)
+        exit()
+
+    
+    def Timer(self, timerDuration):
+        global myTimer
+        myTimer = timerDuration
+
+        # Start the timer
+        for i in range(myTimer):
+            myTimer -= 1
+            time.sleep(1)
+
+        print(errorColor + "\nTime's up! Enter your last answer (if you answer is already written just press enter): " + defaultColor)
+
+    
+    def CountDown(self, duration):
+        print(errorColor + f"You have {duration} seconds to answer each question" + defaultColor)
+
+        # Print a countdown
+        for i in range(3, 0, -1):
+            print(i)
+            time.sleep(1)
+
+
     def ActionForm(self, actions):
         '''
         Print a menu with the given actions and execute the corresponding function
@@ -57,14 +89,6 @@ class GestionExamens:
                 return choice
             else:
                 print(errorColor + "Invalid choice" + backgroundColor)
-
-    def Quit(self):
-        '''
-        Quit the application
-        '''
-        print(Style.CLEAR)
-        print(Style.CLEAR + goodbyeColor + "Au revoir!" + defaultColor)
-        exit()
 
 
     def mainMenu(self):
@@ -198,6 +222,8 @@ class GestionExamens:
         '''
         Print the teacher mode menu
         '''
+        # Clear the screen
+        print(Style.CLEAR, end='')
         print(correctColor + "Login successful" + backgroundColor)
         print(backgroundColor + "*****************************")
         print(Style.BOLD + headerColor + "MODE PROFESSEUR" + Style.END + backgroundColor)
@@ -344,6 +370,8 @@ class GestionExamens:
         '''
         Print the student mode menu
         '''
+        # Clear the screen
+        print(Style.CLEAR, end='')
         print(correctColor + "Login successful" + backgroundColor)
         print(backgroundColor + "*****************************")
         print(Style.BOLD + headerColor + "MODE ELEVE" + Style.END + backgroundColor)
@@ -361,14 +389,13 @@ class GestionExamens:
         '''
         # Clear the screen
         print(Style.CLEAR, end='')
-        # Create empty lists for questions, answers and correct answers and quiz duration
+
+        # Create empty lists for questions, answers and correct answers
         questions = []
         answers = []
         correct_answers = []
+        qcmFiles = {}  # Create a dictionary for the quizzes that exist in a folder
         quizDuration = 0
-        # Create a dictionary for the quizzes that exist in a folder
-        qcmFiles = {}
-        # Grade of the student
         grade = 0
 
         # Create folder for student
@@ -379,6 +406,7 @@ class GestionExamens:
 
         # Check if there are any quizzes
         print(backgroundColor + "Liste des QCM disponibles : " + defaultColor)
+
         # Check if the user has already done the quiz, if yes, remove it from their quizzes list
         count = 1
         for i, file in enumerate(os.listdir("QCM")):
@@ -395,7 +423,7 @@ class GestionExamens:
                 qcmNumber = str(qcmNumber)
                 # Check if choice is valid
                 if qcmNumber in qcmFiles.keys():
-                    print("You selected", qcmFiles[qcmNumber])
+                    print(correctColor + "You selected", qcmFiles[qcmNumber] + defaultColor)
                     # Set selected quiz
                     selectedQCM = qcmFiles[qcmNumber]
                     break
@@ -408,6 +436,7 @@ class GestionExamens:
         time.sleep(1)
         print(Style.CLEAR, end='')
 
+        # ------ READ QUIZ FILE ------
         # Open selected quiz
         with open(f'QCM\{selectedQCM}.txt', "r", encoding='utf-8') as file:
             # Read all lines
@@ -434,15 +463,21 @@ class GestionExamens:
                 # Convert to int and add to correct_answers list
                 correct_answers.append(int(correct_answer))
 
-                # Get quiz duration
-                while not lines[i].startswith("Quiz duration:"):
-                    i += 1
-                # Extract quiz duration without "Quiz duration:" and add it to quizDuration
-                quizDuration = lines[i].replace("Quiz duration:", "").strip()
-                # Convert to int and add to quizDuration
-                quizDuration = int(quizDuration)
+            # Check if line starts with "Quiz duration:"
+            if lines[i].startswith("Quiz duration:"):
+                # Extract the duration value
+                quizDuration = int(lines[i].replace("Quiz duration:", "").strip())
             i += 1
 
+        # ------ START TIMER, SHOW QUIZ QUESTIONS AND WRITE ANSWERS TO STUDENT FILE ------
+        # Start the countdown
+        self.CountDown(quizDuration)
+        # Start the timer
+        stopThread = False
+        timerThread = threading.Thread(target=self.Timer, args=(quizDuration,))
+        timerThread.start()
+
+        while myTimer > 0:
             for question in range(len(questions)):
                 # Print question
                 print(questionColor + f"Question: {questions[question]}" + questionColor)
@@ -465,27 +500,33 @@ class GestionExamens:
                     # If incorrect, print correct answer
                     print(errorColor + "Incorrect!\n" + backgroundColor)
 
-            # If file doesn't exist, create it
-            if not os.path.exists(f"{self.folderName}\\{self.username}_{selectedQCM}.txt"):
-                open(f"{self.folderName}\\{self.username}_{selectedQCM}.txt", "w").close()
+                # If file doesn't exist, create it
+                if not os.path.exists(f"{self.folderName}\\{self.username}_{selectedQCM}.txt"):
+                    open(f"{self.folderName}\\{self.username}_{selectedQCM}.txt", "w").close()
 
-            # Open file and write the questions, answers, correct answer and user answer
-            with open(f"{self.folderName}\\{self.username}_{selectedQCM}.txt", "a", encoding='utf-8') as file:
-                file.write(f"Question: {questions[question]}\n")
-                file.write("Answers:\n")
-                file.write("\n".join(answers[question]) + "\n")
-                file.write(f"Correct Answer: {correct_answers[question]}\n")
-                file.write(f"User Answer: {userInput}\n")
-                file.write("\n")
+                # Open file and write the questions, answers, correct answer and user answer
+                with open(f"{self.folderName}\\{self.username}_{selectedQCM}.txt", "a", encoding='utf-8') as file:
+                    file.write(f"Question: {questions[question]}\n")
+                    file.write("Answers:\n")
+                    file.write("\n".join(answers[question]) + "\n")
+                    file.write(f"Correct Answer: {correct_answers[question]}\n")
+                    file.write(f"User Answer: {userInput}\n")
+                    file.write("\n")
+                
+                if myTimer <= 0:
+                    break
+            # If done with all questions stop the timer thread and break
+            break
 
-            # Seperate each quiz
-            with open(f"{self.folderName}\\{self.username}_{selectedQCM}.txt", "a", encoding='utf-8') as file:
-                file.write(f"Student grade: {grade}/{len(questions)}\n")
-                file.write("--------------------------------------------------\n")
+        # End of quiz, grade the student
+        with open(f"{self.folderName}\\{self.username}_{selectedQCM}.txt", "a", encoding='utf-8') as file:
+            file.write(f"Student grade: {grade}/{len(questions)}\n")
+            file.write("--------------------------------------------------\n")
         
         # Clear the screen
         time.sleep(1)
         print(Style.CLEAR, end='')
+        
         # Print results
         print(correctColor + "Quiz completed!" + Style.END)
         if grade == len(questions):
