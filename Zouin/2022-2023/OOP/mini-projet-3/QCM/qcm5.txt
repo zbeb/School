@@ -25,3 +25,5 @@ q: Comment convertit-on un nombre en entier en Python ?
 3) integer()
 4) int()
 Correct: 4
+
+Quiz duration: 60

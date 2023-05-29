@@ -25,3 +25,5 @@ q: Comment déclare-t-on une variable en Python ?
 3) int x = 5
 4) declare x = 5
 Correct: 2
+
+Quiz duration: 10
