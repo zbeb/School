@@ -1,0 +1,16 @@
+Question: comment definir une variable en python?
+Answers:
+1) x = 1
+2) int x = 1
+Correct Answer: 1
+User Answer: 1
+
+Question: string est it un type entier?
+Answers:
+1) oui
+2) non
+Correct Answer: 2
+User Answer: 1
+
+Student grade: 1/2
+--------------------------------------------------

@@ -50,7 +50,7 @@ class GestionExamens:
         print(Style.CLEAR + goodbyeColor + "Au revoir!" + defaultColor)
         exit()
 
-    
+
     def Timer(self, timerDuration):
         global myTimer
         myTimer = timerDuration
@@ -155,7 +155,7 @@ class GestionExamens:
                 break
         try:
             # Open the accounts file
-            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
+            with open(file="Accounts\\eleves.txt", mode="r", encoding='utf-8') as file:
                 # Read all the accounts
                 accounts = file.readlines()
                 for account in accounts:
@@ -169,7 +169,7 @@ class GestionExamens:
                         self.mainMenu()
 
             # If the username doesn't exist, save the new account
-            with open(file="Accounts\\accounts.txt", mode="a", encoding='utf-8') as file:
+            with open(file="Accounts\\eleves.txt", mode="a", encoding='utf-8') as file:
                 file.write(f"{whoRegister}|{username}:{password}\n")
 
             # Print a success message and clear the screen
@@ -200,7 +200,7 @@ class GestionExamens:
 
         try:
             # Open the accounts file
-            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
+            with open(file="Accounts\\eleves.txt", mode="r", encoding='utf-8') as file:
                 # Read all the accounts
                 accounts = file.readlines()
         except FileNotFoundError:

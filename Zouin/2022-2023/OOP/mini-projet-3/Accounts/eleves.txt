@@ -1,0 +1,8 @@
+PROF|prof:prof
+ELEVE|eleve:eleve
+ELEVE|asd:asd
+ELEVE|lol:lol
+PROF|prof1:prof1
+ELEVE|eleve1:1002004
+PROF|jean:123
+ELEVE|aaa:aaa

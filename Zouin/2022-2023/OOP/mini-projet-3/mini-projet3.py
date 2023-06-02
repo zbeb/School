@@ -1,12 +1,12 @@
 import os
 import time
 import threading
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
 
-# TODO: ----------------------------------------------------------------------------------------------------
-                # --------------------------💀 SHIT DOES NOT WORK BRUH 💀--------------------------         
-                #                              ADD TIMER USING THREADING                            
-                # --------------------------💀 SHIT DOES NOT WORK BRUH 💀--------------------------
-# TODO: ----------------------------------------------------------------------------------------------------
 
 class Style:
     WHITE = '\033[97m'
@@ -155,7 +155,7 @@ class GestionExamens:
                 break
         try:
             # Open the accounts file
-            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
+            with open(file="Accounts\\eleves.txt", mode="r", encoding='utf-8') as file:
                 # Read all the accounts
                 accounts = file.readlines()
                 for account in accounts:
@@ -169,7 +169,7 @@ class GestionExamens:
                         self.mainMenu()
 
             # If the username doesn't exist, save the new account
-            with open(file="Accounts\\accounts.txt", mode="a", encoding='utf-8') as file:
+            with open(file="Accounts\\eleves.txt", mode="a", encoding='utf-8') as file:
                 file.write(f"{whoRegister}|{username}:{password}\n")
 
             # Print a success message and clear the screen
@@ -200,7 +200,7 @@ class GestionExamens:
 
         try:
             # Open the accounts file
-            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
+            with open(file="Accounts\\eleves.txt", mode="r", encoding='utf-8') as file:
                 # Read all the accounts
                 accounts = file.readlines()
         except FileNotFoundError:
@@ -357,6 +357,10 @@ class GestionExamens:
                 print(errorColor + "Invalid choice" + backgroundColor)
 
         # ------ SHOW STUDENT RESULTS ------
+        # Clear the screen
+        print(Style.CLEAR, end='')
+        
+        # Open the student file and print the results
         with open(f"{selectedStudentFolder}\\{selectedStudentFile}", "r", encoding='utf-8') as file:
             print(file.read())
 
@@ -537,7 +541,6 @@ class GestionExamens:
             print(errorColor + f"SOOO BAAAAAD HAHAHA. You got {grade}/{len(questions)}" + Style.END)
         time.sleep(2)
         self.studentMode()
-
 
 def main():
     print(Style.CLEAR, end='') # Clear the screen

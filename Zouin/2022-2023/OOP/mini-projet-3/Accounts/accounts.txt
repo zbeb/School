@@ -1,3 +1,0 @@
-PROF|prof:prof
-ELEVE|eleve:eleve
-ELEVE|asd:asd
