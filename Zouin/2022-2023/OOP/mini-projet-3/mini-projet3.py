@@ -2,12 +2,25 @@ import os
 import time
 import threading
 
-# TODO: ----------------------------------------------------------------------------------------------------
-                # --------------------------💀 SHIT DOES NOT WORK BRUH 💀--------------------------         
-                #                              ADD TIMER USING THREADING                            
-                # --------------------------💀 SHIT DOES NOT WORK BRUH 💀--------------------------
-# TODO: ----------------------------------------------------------------------------------------------------
 
+'''
+----------------------- MAIN VERSION -----------------------
+,---,---,---,---,---,---,---,---,---,---,---,---,---,-------,
+|1/2| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | + | ' | <-    |
+|---'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-----|
+| ->| | Q | W | E |   | T | Y |   | I |   |   | ] | ^ |     |
+|-----',--',--',--',--',--',--',--',--',--',--',--',--'|    |
+| Caps | A | S | D | F | G |   | J | K | L | \ | [ | * |    |
+|----,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'---'----|
+|    | < | Z | X | C | V |   |   | M | , | . | - |          |
+|----'-,-',--'--,'---'---'---'---'---'---'-,-'---',--,------|
+| ctrl |  | alt |                          |altgr |  | ctrl |
+'------'  '-----'--------------------------'------'  '------'
+----------------------- MAIN VERSION -----------------------
+'''
+
+
+# ------ COLORS ------
 class Style:
     WHITE = '\033[97m'
     PURPLE = '\033[95m'
@@ -25,6 +38,7 @@ class Style:
     SHOWCURSOR = '\033[?25h'
 
 
+# ------ COLORS VARIABLES ------
 defaultColor = Style.WHITE
 appHeaderColor = Style.DARKCYAN
 backgroundColor = Style.CYAN
@@ -49,18 +63,6 @@ class GestionExamens:
         print(Style.CLEAR)
         print(Style.CLEAR + goodbyeColor + "Au revoir!" + defaultColor)
         exit()
-
-    
-    def Timer(self, timerDuration):
-        global myTimer
-        myTimer = timerDuration
-
-        # Start the timer
-        for i in range(myTimer):
-            myTimer -= 1
-            time.sleep(1)
-
-        print(errorColor + "\nTime's up! Enter your last answer (if you answer is already written just press enter): " + defaultColor)
 
     
     def CountDown(self, duration):
@@ -130,13 +132,13 @@ class GestionExamens:
                 break
             elif answer == "n":
                 # If no, register a new account
-                self.register(user, user)
+                self.register(user, user, None)
                 break
             else:
                 answer = input(errorColor + "Please enter a valid answer (y/n) : " + defaultColor)
 
 
-    def register(self, whoRegister, whoCreatedAccount):
+    def register(self, whoRegister, whoCreatedAccount, studentRegisterNum):
         '''
         Register a new account
         '''
@@ -170,7 +172,10 @@ class GestionExamens:
 
             # If the username doesn't exist, save the new account
             with open(file="Accounts\\accounts.txt", mode="a", encoding='utf-8') as file:
-                file.write(f"{whoRegister}|{username}:{password}\n")
+                if studentRegisterNum == None:
+                    file.write(f"{whoRegister}|{username}:{password}\n")
+                else:
+                    file.write(f"{whoRegister}|{username}:{password}|{studentRegisterNum}\n")
 
             # Print a success message and clear the screen
             print(correctColor + "Register successful!" + backgroundColor)
@@ -286,7 +291,7 @@ class GestionExamens:
         Create a new student account as a teacher
         '''
         print(Style.CLEAR, end='')
-        self.register("ELEVE", "PROF")
+        self.register("ELEVE", "PROF", input(backgroundColor + "Veuillez entrer le numéro d'inscription de l'élève : " + defaultColor))
 
     
     def showStudentResults(self):
@@ -357,6 +362,10 @@ class GestionExamens:
                 print(errorColor + "Invalid choice" + backgroundColor)
 
         # ------ SHOW STUDENT RESULTS ------
+        # Clear the screen
+        print(Style.CLEAR, end='')
+        
+        # Open the student file and print the results
         with open(f"{selectedStudentFolder}\\{selectedStudentFile}", "r", encoding='utf-8') as file:
             print(file.read())
 
@@ -469,64 +478,60 @@ class GestionExamens:
                 quizDuration = int(lines[i].replace("Quiz duration:", "").strip())
             i += 1
 
-        # ------ START TIMER, SHOW QUIZ QUESTIONS AND WRITE ANSWERS TO STUDENT FILE ------
+        # ------ SHOW QUIZ QUESTIONS AND WRITE ANSWERS TO STUDENT FILE ------
         # Start the countdown
         self.CountDown(quizDuration)
-        # Start the timer
-        stopThread = False
-        timerThread = threading.Thread(target=self.Timer, args=(quizDuration,))
-        timerThread.start()
+        # Start timer
+        startTimer = time.time()
 
-        while myTimer > 0:
-            for question in range(len(questions)):
-                # Print question
-                print(questionColor + f"Question: {questions[question]}" + questionColor)
-                # Print answers
-                print("\n".join(answers[question]))
-                # Ask user the question answer with try except
-                while True:
-                    try:
-                        userInput = int(input(backgroundColor + "Enter your answer: " + defaultColor))
-                        break
-                    except ValueError:
-                        print(errorColor + "Invalid choice" + backgroundColor)
-
-                # Check if answer is correct
-                if userInput == correct_answers[question]:
-                    # If correct, add 1 to grade
-                    print(correctColor + "Correct!\n" + backgroundColor)
-                    grade += 1
-                else:
-                    # If incorrect, print correct answer
-                    print(errorColor + "Incorrect!\n" + backgroundColor)
-
-                # If file doesn't exist, create it
-                if not os.path.exists(f"{self.folderName}\\{self.username}_{selectedQCM}.txt"):
-                    open(f"{self.folderName}\\{self.username}_{selectedQCM}.txt", "w").close()
-
-                # Open file and write the questions, answers, correct answer and user answer
-                with open(f"{self.folderName}\\{self.username}_{selectedQCM}.txt", "a", encoding='utf-8') as file:
-                    file.write(f"Question: {questions[question]}\n")
-                    file.write("Answers:\n")
-                    file.write("\n".join(answers[question]) + "\n")
-                    file.write(f"Correct Answer: {correct_answers[question]}\n")
-                    file.write(f"User Answer: {userInput}\n")
-                    file.write("\n")
-                
-                if myTimer <= 0:
+        for question in range(len(questions)):
+            # Print question
+            print(questionColor + f"Question: {questions[question]}" + questionColor)
+            # Print answers
+            print("\n".join(answers[question]))
+            # Ask user the question answer with try except
+            while True:
+                try:
+                    userInput = int(input(backgroundColor + "Enter your answer: " + defaultColor))
                     break
-            # If done with all questions stop the timer thread and break
-            break
+                except ValueError:
+                    print(errorColor + "Invalid choice" + backgroundColor)
 
+            # Check if answer is correct
+            if userInput == correct_answers[question]:
+                # If correct, add 1 to grade
+                print(correctColor + "Correct!\n" + backgroundColor)
+                grade += 1
+            else:
+                # If incorrect, print correct answer
+                print(errorColor + "Incorrect!\n" + backgroundColor)
+
+            # If file doesn't exist, create it
+            if not os.path.exists(f"{self.folderName}\\{self.username}_{selectedQCM}.txt"):
+                open(f"{self.folderName}\\{self.username}_{selectedQCM}.txt", "w").close()
+
+            # Open file and write the questions, answers, correct answer and user answer
+            with open(f"{self.folderName}\\{self.username}_{selectedQCM}.txt", "a", encoding='utf-8') as file:
+                file.write(f"Question: {questions[question]}\n")
+                file.write("Answers:\n")
+                file.write("\n".join(answers[question]) + "\n")
+                file.write(f"Correct Answer: {correct_answers[question]}\n")
+                file.write(f"User Answer: {userInput}\n")
+                file.write("\n")
+
+        # End timer
+        endTimer = time.time()
         # End of quiz, grade the student
         with open(f"{self.folderName}\\{self.username}_{selectedQCM}.txt", "a", encoding='utf-8') as file:
+            file.write(f"Temps pris pour completer le qcm: {round(endTimer - startTimer)}\n")
             file.write(f"Student grade: {grade}/{len(questions)}\n")
             file.write("--------------------------------------------------\n")
         
         # Clear the screen
         time.sleep(1)
         print(Style.CLEAR, end='')
-        
+        # Print the time it took to complete the quiz
+        print("Ca vous a pris", round(endTimer - startTimer), "secondes pour completer le QCM")
         # Print results
         print(correctColor + "Quiz completed!" + Style.END)
         if grade == len(questions):
