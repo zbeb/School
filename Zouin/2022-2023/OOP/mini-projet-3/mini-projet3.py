@@ -1,6 +1,11 @@
 import os
 import time
 import threading
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
 
 
 '''
@@ -157,7 +162,7 @@ class GestionExamens:
                 break
         try:
             # Open the accounts file
-            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
+            with open(file="Accounts\\eleves.txt", mode="r", encoding='utf-8') as file:
                 # Read all the accounts
                 accounts = file.readlines()
                 for account in accounts:
@@ -176,6 +181,8 @@ class GestionExamens:
                     file.write(f"{whoRegister}|{username}:{password}\n")
                 else:
                     file.write(f"{whoRegister}|{username}:{password}|{studentRegisterNum}\n")
+            with open(file="Accounts\\eleves.txt", mode="a", encoding='utf-8') as file:
+                file.write(f"{whoRegister}|{username}:{password}\n")
 
             # Print a success message and clear the screen
             print(correctColor + "Register successful!" + backgroundColor)
@@ -205,7 +212,7 @@ class GestionExamens:
 
         try:
             # Open the accounts file
-            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
+            with open(file="Accounts\\eleves.txt", mode="r", encoding='utf-8') as file:
                 # Read all the accounts
                 accounts = file.readlines()
         except FileNotFoundError:
@@ -362,6 +369,10 @@ class GestionExamens:
                 print(errorColor + "Invalid choice" + backgroundColor)
 
         # ------ SHOW STUDENT RESULTS ------
+        # Clear the screen
+        print(Style.CLEAR, end='')
+        
+        # Open the student file and print the results
         # Clear the screen
         print(Style.CLEAR, end='')
         
@@ -542,7 +553,6 @@ class GestionExamens:
             print(errorColor + f"SOOO BAAAAAD HAHAHA. You got {grade}/{len(questions)}" + Style.END)
         time.sleep(2)
         self.studentMode()
-
 
 def main():
     print(Style.CLEAR, end='') # Clear the screen

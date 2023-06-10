@@ -143,7 +143,7 @@ class GestionExamens:
                 break
         try:
             # Open the accounts file
-            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
+            with open(file="Accounts\\eleves.txt", mode="r", encoding='utf-8') as file:
                 # Read all the accounts
                 accounts = file.readlines()
                 for account in accounts:
@@ -191,7 +191,7 @@ class GestionExamens:
 
         try:
             # Open the accounts file
-            with open(file="Accounts\\accounts.txt", mode="r", encoding='utf-8') as file:
+            with open(file="Accounts\\eleves.txt", mode="r", encoding='utf-8') as file:
                 # Read all the accounts
                 accounts = file.readlines()
         except FileNotFoundError:
