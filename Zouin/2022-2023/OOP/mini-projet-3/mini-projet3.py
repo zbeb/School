@@ -1,12 +1,67 @@
 import os
 import time
 import threading
-# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
-# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
-# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
-# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
-# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
 
+
+'''
+        ----------------------- MAIN VERSION -----------------------
+        ,---,---,---,---,---,---,---,---,---,---,---,---,---,-------,
+        |1/2| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | + | ' | <-    |
+        |---'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-----|
+        | ->| | Q | W | E |   | T | Y |   | I |   |   | ] | ^ |     |
+        |-----',--',--',--',--',--',--',--',--',--',--',--',--'|    |
+        | Caps | A | S | D | F | G |   | J | K | L | \ | [ | * |    |
+        |----,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'---'----|
+        |    | < | Z | X | C | V |   |   | M | , | . | - |          |
+        |----'-,-',--'--,'---'---'---'---'---'---'-,-'---',--,------|
+        | ctrl |  | alt |                          |altgr |  | ctrl |
+        '------'  '-----'--------------------------'------'  '------'
+        ----------------------- MAIN VERSION -----------------------
+
+
+        ----------------------- VISUAL PARADIGM --------------------
+                             ,-------------------.                             
+                             |Style              |                             
+                             |-------------------|                             
+                             |- WHITE: str       |                             
+                             |- PURPLE: str      |                             
+                             |- CYAN: str        |                             
+                             |- DARKCYAN: str    |                             
+                             |- BLUE: str        |                             
+                             |- GREEN: str       |                             
+                             |- YELLOW: str      |                             
+                             |- RED: str         |                             
+                             |- BOLD: str        |                             
+                             |- UNDERLINE: str   |                             
+                             |- END: str         |                             
+                             |- CLEAR: str       |                             
+                             |- REMOVECURSOR: str|                             
+                             |- SHOWCURSOR: str  |                             
+                             `-------------------'                             
+                                       |                                       
+                                       |                                       
+,-----------------------------------------------------------------------------.
+|GestionExamens                                                               |
+|-----------------------------------------------------------------------------|
+|- username: str                                                              |
+|- password: str                                                              |
+|- folderName: str                                                            |
+|                                                                             |
+|+ __init__()                                                                 |
+|+ Quit()                                                                     |
+|+ CountDown(duration: int)                                                   |
+|+ ActionForm(actions: dict)                                                  |
+|+ mainMenu()                                                                 |
+|+ checkAccount(user: str)                                                    |
+|+ register(whoRegister: str, whoCreatedAccount: str, studentRegisterNum: str)|
+|+ login()                                                                    |
+|+ teacherMode()                                                              |
+|+ createQuiz()                                                               |
+|+ createStudentAccount()                                                     |
+|+ showStudentResults()                                                       |
+`-----------------------------------------------------------------------------'
+        ----------------------- VISUAL PARADIGM --------------------
+'''
 
 class Style:
     WHITE = '\033[97m'
@@ -507,6 +562,7 @@ class GestionExamens:
 
         # End timer
         endTimer = time.time()
+
         # End of quiz, grade the student
         with open(f"{self.folderName}\\{self.username}_{selectedQCM}.txt", "a", encoding='utf-8') as file:
             file.write(f"Temps pris pour completer le qcm: {round(endTimer - startTimer)}\n")
