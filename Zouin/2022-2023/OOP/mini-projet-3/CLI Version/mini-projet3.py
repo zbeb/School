@@ -588,6 +588,16 @@ class GestionExamens:
 
 def main():
     print(Style.CLEAR, end='') # Clear the screen
+
+    # Create the folders if they don't exist
+    if not os.path.exists("Accounts"):
+        os.mkdir("Accounts")
+    if not os.path.exists("QCM"):
+        os.mkdir("QCM")
+    if not os.path.exists("Accounts\eleves.txt"):
+        open("Accounts\eleves.txt", "w").close()
+
+    # Start the application
     user = GestionExamens()
     user.mainMenu()
 
