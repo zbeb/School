@@ -3,4 +3,4 @@ Pour telecharger ou bien c'est avec ce lien (method plus facile): https://minhas
 !!!!!!!!!!!!!!!!! IMPORANT !!!!!!!!!!!!!!!!!
 Apres le telechargement, bien prendre tout les fichiers/dossiers dans CLI Version et les mettre dans le dossier mini-projet-3 sinon le program fonctionne pas
 
-Ou bien vous créez les mêmes dossiers et fichiers que moi (même majuscules).
+Ou bien vous créez les mêmes dossiers et fichiers que moi (même majuscules)
