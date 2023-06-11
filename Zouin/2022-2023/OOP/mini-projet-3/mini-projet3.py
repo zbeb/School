@@ -1,26 +1,13 @@
 import os
 import time
 import threading
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
+# --------------------------------------------------- THIS IS A TEST VERSION USE mini-projet-3 ----------------------------------------------------
 
 
-'''
------------------------ MAIN VERSION -----------------------
-,---,---,---,---,---,---,---,---,---,---,---,---,---,-------,
-|1/2| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | + | ' | <-    |
-|---'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-----|
-| ->| | Q | W | E |   | T | Y |   | I |   |   | ] | ^ |     |
-|-----',--',--',--',--',--',--',--',--',--',--',--',--'|    |
-| Caps | A | S | D | F | G |   | J | K | L | \ | [ | * |    |
-|----,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'---'----|
-|    | < | Z | X | C | V |   |   | M | , | . | - |          |
-|----'-,-',--'--,'---'---'---'---'---'---'-,-'---',--,------|
-| ctrl |  | alt |                          |altgr |  | ctrl |
-'------'  '-----'--------------------------'------'  '------'
------------------------ MAIN VERSION -----------------------
-'''
-
-
-# ------ COLORS ------
 class Style:
     WHITE = '\033[97m'
     PURPLE = '\033[95m'
@@ -38,7 +25,6 @@ class Style:
     SHOWCURSOR = '\033[?25h'
 
 
-# ------ COLORS VARIABLES ------
 defaultColor = Style.WHITE
 appHeaderColor = Style.DARKCYAN
 backgroundColor = Style.CYAN
@@ -171,13 +157,11 @@ class GestionExamens:
                         self.mainMenu()
 
             # If the username doesn't exist, save the new account
-            with open(file="Accounts\\accounts.txt", mode="a", encoding='utf-8') as file:
+            with open(file="Accounts\\eleves.txt", mode="a", encoding='utf-8') as file:
                 if studentRegisterNum == None:
                     file.write(f"{whoRegister}|{username}:{password}\n")
                 else:
                     file.write(f"{whoRegister}|{username}:{password}|{studentRegisterNum}\n")
-            with open(file="Accounts\\eleves.txt", mode="a", encoding='utf-8') as file:
-                file.write(f"{whoRegister}|{username}:{password}\n")
 
             # Print a success message and clear the screen
             print(correctColor + "Register successful!" + backgroundColor)
@@ -368,10 +352,6 @@ class GestionExamens:
         print(Style.CLEAR, end='')
         
         # Open the student file and print the results
-        # Clear the screen
-        print(Style.CLEAR, end='')
-        
-        # Open the student file and print the results
         with open(f"{selectedStudentFolder}\\{selectedStudentFile}", "r", encoding='utf-8') as file:
             print(file.read())
 
@@ -548,6 +528,7 @@ class GestionExamens:
             print(errorColor + f"SOOO BAAAAAD HAHAHA. You got {grade}/{len(questions)}" + Style.END)
         time.sleep(2)
         self.studentMode()
+
 
 def main():
     print(Style.CLEAR, end='') # Clear the screen

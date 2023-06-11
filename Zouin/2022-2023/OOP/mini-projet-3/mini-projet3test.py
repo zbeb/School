@@ -157,7 +157,7 @@ class GestionExamens:
                         self.mainMenu()
 
             # If the username doesn't exist, save the new account
-            with open(file="Accounts\\accounts.txt", mode="a", encoding='utf-8') as file:
+            with open(file="Accounts\\eleves.txt", mode="a", encoding='utf-8') as file:
                 if studentRegisterNum == None:
                     file.write(f"{whoRegister}|{username}:{password}\n")
                 else:
